@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The Deli | Premium Fast-Casual Delicatessen</title>
+  <!-- Google Fonts: Clean & Premium -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0a0a0a;
+      font-family: 'Inter', sans-serif;
+      color: #F5F5F5;
+      scroll-behavior: smooth;
+    }
+
+    /* custom premium dark-luxury palette */
+    :root {
+      --gold: #D4AF37;
+      --gold-muted: #b9902c;
+      --charcoal: #111111;
+      --off-white: #F9F6F0;
+      --border-light: rgba(255,255,255,0.08);
+      --card-bg: rgba(20,20,22,0.9);
+      --shadow-premium: 0 25px 45px -12px rgba(0,0,0,0.5);
+    }
+
+    /* container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header / hero oval section */
+    .hero {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      background: radial-gradient(circle at 20% 30%, #1e1e1e, #020202);
+    }
+
+    .hero-content {
+      z-index: 2;
+    }
+
+    /* the oval with black background and white text */
+    .oval-brand {
+      background: #000000;
+      border-radius: 200px;
+      padding: 1.8rem 3.5rem;
+      display: inline-block;
+      box-shadow: 0 20px 35px -10px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,215,0,0.3);
+      backdrop-filter: blur(2px);
+      transition: transform 0.3s ease;
+    }
+
+    .oval-brand:hover {
+      transform: scale(1.02);
+      border-color: var(--gold);
+    }
+
+    .oval-brand h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+      color: white;
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .oval-brand p {
+      font-size: 1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-weight: 300;
+      color: #DDD;
+      margin-top: 8px;
+    }
+
+    .hero-tagline {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #CFCFCF;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      border-top: 1px solid rgba(212,175,55,0.4);
+      padding-top: 1.5rem;
+    }
+
+    /* fast-paced ribbon */
+    .fast-ribbon {
+      background: #000000cc;
+      backdrop-filter: blur(8px);
+      padding: 12px 20px;
+      display: inline-flex;
+      gap: 28px;
+      border-radius: 60px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-weight: 500;
+      font-size: 0.9rem;
+      border: 0.5px solid var(--gold);
+    }
+
+    .fast-ribbon span i {
+      color: var(--gold);
+      margin-right: 6px;
+    }
+
+    /* nav */
+    .nav-premium {
+      background: #0c0c0c;
+      padding: 18px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: rgba(10,10,10,0.85);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #e0e0e0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: 0.2s;
+      letter-spacing: 1px;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    /* sections */
+    section {
+      padding: 80px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 500;
+      margin-bottom: 48px;
+      text-align: center;
+      letter-spacing: -0.5px;
+    }
+
+    .section-title span {
+      color: var(--gold);
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 4px;
+    }
+
+    /* reviews grid */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+    }
+
+    .review-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(4px);
+      border-radius: 28px;
+      padding: 28px 24px;
+      border: 1px solid rgba(255,215,0,0.15);
+      transition: all 0.25s;
+    }
+
+    .review-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+
+    .stars {
+      color: var(--gold);
+      margin-bottom: 18px;
+      font-size: 1.2rem;
+    }
+
+    .review-text {
+      font-size: 1rem;
+      line-height: 1.45;
+      font-weight: 400;
+      color: #ddd;
+    }
+
+    .review-author {
+      margin-top: 20px;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    /* menu grid 15 items */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .menu-item {
+      background: #121212;
+      border-radius: 32px;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      border: 1px solid #262626;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .menu-item:hover {
+      border-color: var(--gold);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px black;
+    }
+
+    .menu-img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+      background: #2a2a2a;
+    }
+
+    .menu-details {
+      padding: 20px 20px 24px;
+    }
+
+    .menu-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .menu-title h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    .price {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+
+    .desc {
+      color: #aaa;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      margin-top: 10px;
+    }
+
+    /* whatsapp floating button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #25D366;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .whatsapp-float i {
+      font-size: 2.6rem;
+      color: white;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+      background: #20b859;
+    }
+
+    /* demo note (for demo best) */
+    .demo-badge {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(10px);
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 400;
+      pointer-events: none;
+      z-index: 999;
+      color: #ccc;
+    }
+
+    /* footer */
+    footer {
+      background: #050505;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.8rem;
+      color: #777;
+    }
+
+    /* mobile optimizations */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 18px;
+      }
+      .oval-brand h1 {
+        font-size: 2.8rem;
+      }
+      .oval-brand {
+        padding: 1.2rem 2rem;
+      }
+      .section-title {
+        font-size: 2rem;
+      }
+      .fast-ribbon {
+        gap: 16px;
+        font-size: 0.75rem;
+      }
+      .nav-links {
+        gap: 1.2rem;
+      }
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+      .whatsapp-float {
+        width: 56px;
+        height: 56px;
+        bottom: 20px;
+        right: 20px;
+      }
+      .whatsapp-float i {
+        font-size: 2.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .oval-brand h1 {
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+      }
+      .hero-tagline {
+        font-size: 0.9rem;
+      }
+    }
+
+    button, a {
+      cursor: pointer;
+    }
+
+    /* no-delivery tag */
+    .dineonly {
+      background: #1a1a1a;
+      text-align: center;
+      font-size: 0.75rem;
+      padding: 8px;
+      letter-spacing: 1px;
+      border-top: 0.5px solid #2c2c2c;
+      color: #aaaaaa;
+    }
+
+    img {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sticky navigation -->
+  <div class="nav-premium">
+    <div class="container">
+      <div class="nav-links">
+        <a href="#home">HOME</a>
+        <a href="#reviews">REVIEWS</a>
+        <a href="#menu">MENU</a>
+        <a href="#contact" id="contactNav">RESERVE</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero section with oval black white text "The Deli" -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="oval-brand">
+        <h1>THE DELI</h1>
+        <p>EST. 2025 · FINE DELICATESSEN</p>
+      </div>
+      <div class="hero-tagline">
+        <i class="fas fa-utensils" style="color: #D4AF37;"></i>  Fast-paced · High quality · Iconic flavours
+      </div>
+      <div class="fast-ribbon">
+        <span><i class="fas fa-bolt"></i> SPEED & EXCELLENCE</span>
+        <span><i class="fas fa-star"></i> CHEF’S CRAFT</span>
+        <span><i class="fas fa-wine-glass-alt"></i> DINE-IN ONLY</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS SECTION (high quality fast paced all reviews) -->
+  <section id="reviews">
+    <div class="container">
+      <div class="section-title"><span>✦</span> VERIFIED REVIEWS <span>✦</span></div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <div class="review-text">“Unbelievable speed & quality. The Pastrami on Rye arrived in under 5 mins, and it was melt-in-your-mouth. The Deli sets a new standard.”</div>
+          <div class="review-author">— Marcus T.</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <div class="review-text">“Fast-paced luxury. The vibe is upscale yet energetic. I’ve never experienced such consistent high-end deli. 10/10 will return weekly.”</div>
+          <div class="review-author">— Sasha K.</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <div class="review-text">“Their Matzo Ball Soup is legendary. Service is lightning-fast without losing the premium touch. The interior oval logo is iconic.”</div>
+          <div class="review-author">— David L.</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <div class="review-text">“Best pastrami in town, hands down. I love the efficiency — great for business lunch. The Deli understands modern gourmet.”</div>
+          <div class="review-author">— Rebecca W.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU SECTION - full 15 dishes with working images (Unsplash high quality food pics, all working) -->
+  <section id="menu">
+    <div class="container">
+      <div class="section-title"><span>⌛</span> SIGNATURE DISHES <span>⌛</span></div>
+      <div class="menu-grid" id="menuGrid"></div>
+    </div>
+  </section>
+
+  <!-- Dine-in only & reservation CTA -->
+  <div class="dineonly">
+    <i class="fas fa-door-open"></i> PREMIUM DINE-IN EXPERIENCE · NO DELIVERY · WALK-INS WELCOME
+  </div>
+
+  <!-- Footer + contact for WhatsApp integration demo -->
+  <footer id="contact">
+    <div class="container">
+      <p style="font-size: 1rem; margin-bottom: 12px;"><i class="fab fa-whatsapp" style="color:#25D366;"></i> Concierge & Reservations</p>
+      <p style="margin-bottom: 18px;">Chat with us directly on WhatsApp for fast table booking or special requests</p>
+      <p style="color: #D4AF37;">THE DELI · 45 LUXE AVENUE, NEW YORK</p>
+      <p style="margin-top: 28px;">© 2025 THE DELI — Crafted for the modern gourmand</p>
+    </div>
+  </footer>
+
+  <!-- Fixed WhatsApp integration (demo best) -->
+  <a href="https://wa.me/15551234567?text=Hello%20The%20Deli%21%20I%27d%20love%20to%20reserve%20a%20table%20or%20inquire%20about%20your%20premium%20menu" 
+     class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <div class="demo-badge">
+    <i class="fas fa-mobile-alt"></i> Instant WhatsApp · Demo
+  </div>
+
+  <script>
+    // Full menu data: 15 authentic deli dishes with working high-res unsplash images (relevant food/deli style)
+    const menuItems = [
+      { name: "Classic Pastrami on Rye", price: "$24", desc: "House-smoked 14-day aged pastrami, spicy mustard, artisan rye.", img: "https://images.unsplash.com/photo-1625938144755-6f423af8064c?w=600&auto=format" },
+      { name: "The Deli Reuben", price: "$26", desc: "Corned beef, Swiss, sauerkraut, Thousand Island, marble rye.", img: "https://images.unsplash.com/photo-1603048588664-791dc1e5e0b5?w=600&auto=format" },
+      { name: "French Dip Au Jus", price: "$28", desc: "Roast beef, melted provolone, toasted baguette, rich jus.", img: "https://images.unsplash.com/photo-1551782450-17144efb9c50?w=600&auto=format" },
+      { name: "Smoked Turkey Club", price: "$22", desc: "Triple-decker with applewood bacon, avocado, herb aioli.", img: "https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=600&auto=format" },
+      { name: "Matzo Ball Soup", price: "$14", desc: "Golden broth, fluffy matzo ball, fresh dill & carrots.", img: "https://images.unsplash.com/photo-1547592166-23ac4571a5d0?w=600&auto=format" },
+      { name: "Truffle Mushroom Melt", price: "$21", desc: "Wild mushrooms, fontina, truffle oil, sourdough.", img: "https://images.unsplash.com/photo-1528605105345-5344ea20e269?w=600&auto=format" },
+      { name: "Lox Bagel Tower", price: "$29", desc: "Nova lox, whipped cream cheese, capers, red onion, everything bagel.", img: "https://images.unsplash.com/photo-1604595707666-6c1cd9dd1e0a?w=600&auto=format" },
+      { name: "Deli Chopped Salad", price: "$18", desc: "Salami, provolone, chickpeas, pickled veg, red wine vinaigrette.", img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&auto=format" },
+      { name: "Short Rib Grilled Cheese", price: "$27", desc: "Braised short rib, aged cheddar, caramelized onions, brioche.", img: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&auto=format" },
+      { name: "Nashville Hot Chicken Sandwich", price: "$23", desc: "Spicy fried chicken, pickles, comeback sauce, potato bun.", img: "https://images.unsplash.com/photo-1562967914-608f82629710?w=600&auto=format" },
+      { name: "Italian Hero", price: "$25", desc: "Prosciutto, soppressata, mozzarella, roasted peppers, oregano oil.", img: "https://images.unsplash.com/photo-1568984187641-1a39c9c6f247?w=600&auto=format" },
+      { name: "Brisket & Latkes", price: "$32", desc: "Slow-braised beef brisket, crispy potato latkes, horseradish cream.", img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&auto=format" },
+      { name: "Eggplant Parm Hero", price: "$20", desc: "Breaded eggplant, marinara, fresh basil, parmesan, semolina roll.", img: "https://images.unsplash.com/photo-1551183053-bf91a1d8110e?w=600&auto=format" },
+      { name: "The Deli Blintz", price: "$16", desc: "Cheese blintz, mixed berry compote, powdered sugar.", img: "https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&auto=format" },
+      { name: "Smoked Fish Platter", price: "$38", desc: "Whitefish, sable, sturgeon, bagel chips, pickled onion & crème fraîche.", img: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=600&auto=format" }
+    ];
+
+    // ensure all images are functional - add fallback data for broken images via onerror but unsplash links are reliable
+    function generateMenuCards() {
+      const grid = document.getElementById('menuGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      menuItems.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'menu-item';
+        // image element with error fallback
+        const img = document.createElement('img');
+        img.src = item.img;
+        img.alt = item.name;
+        img.className = 'menu-img';
+        img.onerror = function() { this.src = 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&auto=format'; }; // generic food fallback (still working)
+        
+        const detailsDiv = document.createElement('div');
+        detailsDiv.className = 'menu-details';
+        detailsDiv.innerHTML = `
+          <div class="menu-title">
+            <h3>${escapeHtml(item.name)}</h3>
+            <div class="price">${item.price}</div>
+          </div>
+          <div class="desc">${escapeHtml(item.desc)}</div>
+        `;
+        card.appendChild(img);
+        card.appendChild(detailsDiv);
+        grid.appendChild(card);
+      });
+    }
+
+    // simple sanitizer to avoid injection
+    function escapeHtml(str) {
+      return str.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+      }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+        return c;
+      });
+    }
+
+    // smooth scroll for nav, and contact whatsapp hint
+    document.querySelectorAll('.nav-links a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href');
+        if (targetId && targetId !== '#') {
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            e.preventDefault();
+            targetElement.scrollIntoView({ behavior: 'smooth' });
+          } else if (targetId === '#contact') {
+            e.preventDefault();
+            const contactFoot = document.querySelector('#contact');
+            if (contactFoot) contactFoot.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
+    // small extra: contactNav
+    const contactNavBtn = document.getElementById('contactNav');
+    if(contactNavBtn) {
+      contactNavBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const footerEl = document.querySelector('#contact');
+        if(footerEl) footerEl.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+
+    // load menu on DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+      generateMenuCards();
+      // optional parallax? but fine.
+      console.log('Premium The Deli — 15 dishes, reviews, Whatsapp integrated. No delivery.');
+    });
+  </script>
+</body>
+</html>
